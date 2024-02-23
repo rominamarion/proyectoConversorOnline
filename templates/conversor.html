@@ -1,0 +1,14 @@
+{% extends "prueba.html" %}
+
+{% block body %}
+
+<form action = "{{ url_for ('min_seg') }}" method ="POST" >
+  <label for="min">Ingrese los minutos</label>
+  <input type="number" id="number" name="minutos">
+  <label for="seg">Ingrese los segundos</label>
+  <input type="number" id="number" name="segundos">
+  <button>Convertir</button>
+</form>   
+   
+
+{% endblock %}
