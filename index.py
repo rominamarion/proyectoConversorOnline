@@ -5,7 +5,7 @@ app = Flask(__name__) #Para crear urls, puede ser app o cualq otro nombre, es un
 
 @app.route("/") #Ruta para la pag principal
 def home():
-    return render_template("prueba.html") #Devuelve la plantilla
+    return render_template("index.html") #Devuelve la plantilla
 
 @app.route("/datos", methods= ["POST", "GET"]) 
 def datos():
@@ -25,7 +25,7 @@ def datos():
 
 @app.route('/conversor1', methods=["POST","GET"])
 def conversor():
-    if request.form['submit'] == 'minseg':
+    if request.form['submit'] == 'minseg': # Entre [] va el value del html
         seg = request.form.get('segundos',type=int)
         m,s = second(seg)
         return render_template("resultado.html", titulo="Segundos --> Minutos y Segundos", unidad=f"{m} Minutos y {s} Segundos")
