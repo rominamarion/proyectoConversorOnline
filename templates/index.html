@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>Bienvenido!!</h1> <!--Texto-->
-    <button class="btn btn-danger">No me presiones</button> <!--Botón-->
+    <a class="btn btn-danger" href="{{ url_for ('links') }} " target="_blank">No me presiones</a> <!--Botón-->
     <a class="btn btn-primary" href="https://github.com/rominamarion" role="button">GitHub</a>
     <a class="btn btn-primary" href="{{ url_for ('datos') }} ">Conversor</a>
     <input class="btn btn-primary" type="button" value="Input">
