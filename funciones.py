@@ -1,9 +1,10 @@
-def second(segundos):             #segundos ---> minutos y segundos
-    min = segundos //60
+def second(minutos, segundos):             #minutos y segundos ---> minutos y segundos MODIFICADO ---> le agregue minutos a los parámetros
+    minutes = minutos
+    min = segundos //60 + minutes
     seg = segundos % 60
     return min,seg
 
-def hora(segundos):            # segundos ---> hora, min y seg 
+def hour(segundos):            # segundos ---> hora, min y seg  NO SE USA
     hs = segundos // 3600
     sec = segundos % 3600
     min = sec // 60
@@ -14,7 +15,7 @@ def sec(minutos, segundos):           # min y seg ---> seg
     seg = minutos*60 + segundos
     return seg
 
-def hour(min, seg): 
+def hora(min, seg): 
     min = seg // 60 + min                # min y seg ---> hora, min y se
     hora = min // 60 
     minuto = min % 60

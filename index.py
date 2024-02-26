@@ -26,29 +26,51 @@ def datos():
 @app.route('/conversor1', methods=["POST","GET"])
 def conversor():
     if request.form['submit'] == 'minseg': # Entre [] va el value del html
-        seg = request.form.get('segundos',type=int)
-        m,s = second(seg)
-        return render_template("resultado.html", titulo="Segundos --> Minutos y Segundos", unidad=f"{m} Minutos y {s} Segundos")
+        if request.form['minutos'] == "":
+            minuto = 0
+            seg = request.form.get('segundos',type=int)
+            titulo = "Segundos --> Minutos y Segundos"
+        elif request.form['segundos'] == "":
+            seg = 0
+            minuto = request.form.get('minutos',type=int)
+            titulo = "Minutos --> Minutos y Segundos"
+        else:
+            minuto = request.form.get('minutos', type=int)
+            seg = request.form.get('segundos',type=int)
+            titulo = "Minutos y Segundos --> Minutos y Segundos"
+        m,s = second(minuto, seg)
+        return render_template("resultado.html", titulo=titulo, unidad=f"{m} Minutos y {s} Segundos")
     elif request.form['submit'] == 'seg':
-        minuto = request.form.get('minutos', type=int)
-        seg = request.form.get('segundos',type=int)
+        if request.form['minutos'] == "":
+            minuto = 0
+            seg = request.form.get('segundos', type=int)
+            titulo = "Segundos ---> Segundos"
+        elif request.form['segundos'] == "":
+            minuto = request.form.get('minutos',type=int)
+            seg = 0
+            titulo = "Minutos ---> Segundos"
+        else:
+            minuto = request.form.get('minutos', type=int)
+            seg = request.form.get('segundos',type=int)
+            titulo = "Minutos y Segundos ---> Segundos"
         s = sec(minuto, seg)
-        return render_template("resultado.html", titulo="Minutos y Segundos ---> Segundos", unidad=f"{s} Segundos")
+        return render_template("resultado.html", titulo=titulo, unidad=f"{s} Segundos")
     else:
         if request.form['submit'] == 'horaminseg':
             if request.form['minutos'] == "":
+                minuto = 0
                 seg = request.form.get('segundos', type=int)
-                ho, mi, se = hora(seg)
-                titulo = "Segundos ---> Horas, Minutos y Segundos"
-                unidad = f"{ho} Horas, {mi} Minutos y {se} Segundos"
+                titulo = "Segundos ---> Horas, Minutos y Segundos"  
+            elif request.form['segundos'] == "":
+                minuto = request.form.get('minutos',type=int)
+                seg = 0   
+                titulo = "Minutos ---> Horas, Minutos y Segundos"
             else:
-               min = request.form.get('minutos', type=int)
+               minuto = request.form.get('minutos', type=int)
                seg = request.form.get('segundos',type=int) 
-               ho, mi, se = hour(min,seg)
                titulo = "Minutos y Segundos ---> Horas, Minutos y Segundos"
-               unidad = f"{ho} Horas, {mi} Minutos y {se} Segundos"
-            return render_template("resultado.html", titulo=titulo, unidad=unidad)
-
+            ho, mi, se = hora(minuto,seg)
+            return render_template("resultado.html", titulo=titulo, unidad=f"{ho} Horas, {mi} Minutos y {se} Segundos")
 
 
 if __name__ == "__main__":
