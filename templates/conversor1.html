@@ -4,9 +4,9 @@
 
 <form action = "{{ url_for ('conversor') }}" method ="POST" >
   <label for="min">Ingrese los minutos</label>
-  <input type="number" id="number" name="minutos" value="">
+  <input type="number" id="number" name="minutos" value="" min="0">
   <label for="seg">Ingrese los segundos</label>
-  <input type="number" id="number" name="segundos" value="">
+  <input type="number" id="number" name="segundos" value="" min="0">
   <button type="submit" name="submit" value="seg">Convertir a segundos</button>
   <button type="submit" name="submit" value="minseg">Convertir a minutos y segundos</button>
   <button type="submit" name="submit" value="horaminseg">Convertir a horas, minutos y segundos</button>
