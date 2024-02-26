@@ -1,11 +1,19 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from funciones import sec, second, hora, hour
-
+import random
 app = Flask(__name__) #Para crear urls, puede ser app o cualq otro nombre, es una variable para guardar el objeto que devuelve Flask
 
 @app.route("/") #Ruta para la pag principal
 def home():
     return render_template("index.html") #Devuelve la plantilla
+
+@app.route("/redirect")
+def links():
+    l1= "https://www.youtube.com/watch?v=Rk1MYMPDx3s&ab_channel=iTMG"
+    l2= "https://www.youtube.com/watch?v=E6UGrULiwMQ&ab_channel=Muddbicc"
+    l3= "https://www.youtube.com/watch?v=eY52Zsg-KVI&ab_channel=JulianJapenga"
+    link = [l1,l2,l3]
+    return redirect(random.choice(link))
 
 @app.route("/datos", methods= ["POST", "GET"]) 
 def datos():
@@ -16,12 +24,12 @@ def datos():
 #     return render_template("conversor.html")
 
 
-# @app.route("/min_seg", methods= ["GET", "POST"]) 
-# def min_seg():
-#     min=request.form.get('minutos',type=int)
-#     seg=request.form.get('segundos',type=int)
-#     resultado = sec(min,seg)
-#     return render_template("min_seg.html", valor=60, resultado=resultado)
+#@app.route("/min_seg", methods= ["GET", "POST"]) 
+#def min_seg():
+#    min=request.form.get('minutos',type=int)
+#    seg=request.form.get('segundos',type=int)
+#    resultado = sec(min,seg)
+#    return render_template("min_seg.html", valor=60, resultado=resultado)
 
 @app.route('/conversor1', methods=["POST","GET"])
 def conversor():
