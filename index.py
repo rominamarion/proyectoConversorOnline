@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from funciones import sec, second, hora, hour
+from funciones import sec, second, hora
 import random
 app = Flask(__name__) #Para crear urls, puede ser app o cualq otro nombre, es una variable para guardar el objeto que devuelve Flask
 
@@ -24,17 +24,15 @@ def links():
 def datos():
     return render_template("conversor1.html")
 
-# @app.route("/conversor", methods= ["POST", "GET"]) 
-# def conversor():
-#     return render_template("conversor.html")
+@app.route("/ingrese_numero", methods= ["POST", "GET"]) 
+def numero():
+    return render_template("tablas.html")
 
 
-#@app.route("/min_seg", methods= ["GET", "POST"]) 
-#def min_seg():
-#    min=request.form.get('minutos',type=int)
-#    seg=request.form.get('segundos',type=int)
-#    resultado = sec(min,seg)
-#    return render_template("min_seg.html", valor=60, resultado=resultado)
+@app.route("/tablas", methods= ["GET", "POST"]) 
+def tablas():
+    numero = request.form.get('number',type=int)
+    return render_template("resultadoTabla.html", num=numero)
 
 @app.route('/conversor1', methods=["POST","GET"])
 def conversor():
