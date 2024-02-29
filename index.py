@@ -17,7 +17,8 @@ def links():
     l6="https://youtu.be/X8Nc8RCLy1s?t=85"
     l7="https://youtu.be/rvrZJ5C_Nwg?t=139"
     l8="https://youtu.be/NUYvbT6vTPs?t=1"
-    link = [l1,l2,l3,l4,l5,l6,l7,l8]
+    l9="https://www.youtube.com/watch?v=taWzoLpdxaI&ab_channel=J.T.Sexkik"
+    link = [l1,l2,l3,l4,l5,l6,l7,l8,l9]
     return redirect(random.choice(link))
 
 @app.route("/datos", methods= ["POST", "GET"]) 
